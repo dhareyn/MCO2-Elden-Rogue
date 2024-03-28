@@ -1,5 +1,10 @@
 public class MainGame {
-  public static void main(String[] args) {
-  // insert codes here
-  }
+	public static void main(String[] args) {
+		TitleScreenModel model = new TitleScreenModel();
+		TitleScreenView view = new TitleScreenView();
+		TitleScreenController controller = new TitleScreenController(model, view);
+
+		view.display();
+	}
 }
+
