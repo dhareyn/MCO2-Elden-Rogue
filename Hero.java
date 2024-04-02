@@ -9,7 +9,7 @@ public class Hero extends JobClass {
      * The stats are represented in the following order: [HP, MP, Attack, Defense, Agility, Intelligence, Luck]
      */
     public Hero() {
-        super(7, 14, 9, 7, 12, 16, 8);
+        super(7, 14, 9, 7, 12, 16, 8, "jobpics/hero.png");
     }
 
     /**
