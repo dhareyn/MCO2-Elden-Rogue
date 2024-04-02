@@ -41,6 +41,60 @@ public class GameLobbyModel {
         return player.getFaith();
     }
 
+    public int getWeaponHealth() {
+        Weapon equippedWeapon = player.getEquippedWeapon();
+        if (equippedWeapon != null) {
+            return equippedWeapon.getHealth();
+        } else {
+            return 0;
+        }
+    }
+
+    public int getWeaponDexterity() {
+        Weapon equippedWeapon = player.getEquippedWeapon();
+        if (equippedWeapon != null) {
+            return equippedWeapon.getDexterity();
+        } else {
+            return 0;
+        }
+    }
+
+    public int getWeaponIntelligence() {
+        Weapon equippedWeapon = player.getEquippedWeapon();
+        if (equippedWeapon != null) {
+            return equippedWeapon.getIntelligence();
+        } else {
+            return 0;
+        }
+    }
+
+    public int getWeaponEndurance() {
+        Weapon equippedWeapon = player.getEquippedWeapon();
+        if (equippedWeapon != null) {
+            return equippedWeapon.getEndurance();
+        } else {
+            return 0;
+        }
+    }
+
+    public int getWeaponStrength() {
+        Weapon equippedWeapon = player.getEquippedWeapon();
+        if (equippedWeapon != null) {
+            return equippedWeapon.getStrength();
+        } else {
+            return 0;
+        }
+    }
+
+    public int getWeaponFaith() {
+        Weapon equippedWeapon = player.getEquippedWeapon();
+        if (equippedWeapon != null) {
+            return equippedWeapon.getFaith();
+        } else {
+            return 0;
+        }
+    }
+
     public int getPlayerRunes() {
         return player.getRunes();
     }
@@ -48,25 +102,13 @@ public class GameLobbyModel {
     public Player getPlayer() {
         return player;
     }
-    
+
     public String getEquippedWeaponName() {
         Weapon equippedWeapon = player.getEquippedWeapon();
         if (equippedWeapon != null) {
             return equippedWeapon.getName();
         } else {
             return "None";
-        }
-    }
-
-    public String getEquippedWeaponStats() {
-        Weapon equippedWeapon = player.getEquippedWeapon();
-        if (equippedWeapon != null) {
-            // You need to define how you want to display the weapon stats here
-            return "Stats [HP: " + equippedWeapon.getHealth() + ", DEX: " + equippedWeapon.getDexterity() +
-                    ", INT: " + equippedWeapon.getIntelligence() + ", END: " + equippedWeapon.getEndurance() +
-                    ", STR: " + equippedWeapon.getStrength() + ", FTH: " + equippedWeapon.getFaith() + "]";
-        } else {
-            return "No equipped weapon";
         }
     }
 }
