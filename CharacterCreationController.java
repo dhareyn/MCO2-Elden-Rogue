@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.Image;
+
 
 public class CharacterCreationController {
     private CharacterCreationModel model;
@@ -29,29 +32,35 @@ public class CharacterCreationController {
                 }
 
                 // Get the JobClass object based on the selected class
-                JobClass jobClass = null;
-                if ("Vagabond".equals(selectedClass)) {
-                    jobClass = new Vagabond(); // Example - replace with appropriate class instantiation
-                } else if ("Samurai".equals(selectedClass)) {
-                    jobClass = new Samurai(); // Example - replace with appropriate class instantiation
-                } else if ("Warrior".equals(selectedClass)) {
-                    jobClass = new Warrior();
-                } else if ("Hero".equals(selectedClass)) {
-                    jobClass = new Hero();
-                } else if ("Astrologer".equals(selectedClass)) {
-                    jobClass = new Astrologer();
-                } else if ("Prophet".equals(selectedClass)) {
-                    jobClass = new Prophet();
-                }
+                JobClass jobClass = model.getJobClass(selectedClass);
 
                 // Create Player object
                 Player player = new Player(name, jobClass);
 
-                // Display confirmation dialog
-                int choice = JOptionPane.showConfirmDialog(view.getMainFrame(),
-                        "Are you sure you want to create character with NAME: " + name + " and CLASS: " + selectedClass + "?",
-                        "Confirmation",
-                        JOptionPane.YES_NO_OPTION);
+                // Display confirmation dialog with image, stats, and message
+                ImageIcon imageIcon = new ImageIcon(jobClass.getImagePath());
+                Image image = imageIcon.getImage();
+                Image scaledImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                ImageIcon scaledIcon = new ImageIcon(scaledImage);
+                JLabel imageLabel = new JLabel(scaledIcon);
+
+                // Constructing the stats string
+                String stats = "\tSTATS\n" +
+                        "Level: \t" + jobClass.getLevel() + "\n" +
+                        "HP: \t" + jobClass.getHP() + "\n" +
+                        "DEX: \t" + jobClass.getDexterity() + "\n" +
+                        "INT: \t" + jobClass.getIntelligence() + "\n" +
+                        "END: \t" + jobClass.getEndurance() + "\n" +
+                        "STR: \t" + jobClass.getStrength() + "\n" +
+                        "FTH: \t" + jobClass.getFaith() + "\n";
+
+                String message = "Do you want to create character with NAME: " + name + " and CLASS: " + selectedClass + "?";
+                JPanel panel = new JPanel(new BorderLayout());
+                panel.add(imageLabel, BorderLayout.WEST);
+                panel.add(new JTextArea(stats), BorderLayout.CENTER);
+                panel.add(new JTextArea(message), BorderLayout.SOUTH);
+
+                int choice = JOptionPane.showConfirmDialog(view.getMainFrame(), panel, "Confirmation", JOptionPane.YES_NO_OPTION);
 
                 // If user confirms, proceed with character creation
                 if (choice == JOptionPane.YES_OPTION) {
@@ -62,8 +71,8 @@ public class CharacterCreationController {
                     GameLobbyModel gameLobbyModel = new GameLobbyModel(player); // Pass player to the model
                     GameLobbyView gameLobbyView = new GameLobbyView(gameLobbyModel); // Create view with model
                     GameLobbyController gameLobbyController = new GameLobbyController(gameLobbyView, gameLobbyModel); // Create controller with view and model
-                    gameLobbyView.setController(gameLobbyController); // Set controller for the view
-                    gameLobbyView.showLobby(); // Corrected method call
+                    gameLobbyView.setController(gameLobbyController);
+                    gameLobbyView.showLobby();
                 }
             } else {
                 // Display error message for empty player name
