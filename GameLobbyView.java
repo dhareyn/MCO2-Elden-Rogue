@@ -13,7 +13,6 @@ public class GameLobbyView {
     private final JLabel statsLabel;
     private final JLabel runesLabel;
     private final JLabel equippedWeaponLabel;
-    private final JLabel equippedWeaponStatsLabel;
     private final ArrayList<JButton> buttons;
 
     private GameLobbyController controller;
@@ -40,12 +39,14 @@ public class GameLobbyView {
         nameLabel = new JLabel("NAME: " + model.getPlayerName());
         classLabel = new JLabel("CLASS: " + model.getPlayerJobName());
         levelLabel = new JLabel("LEVEL: " + model.getPlayerLevel());
-        statsLabel = new JLabel("STATS [HP: " + model.getPlayerHealth() + " DEX: " + model.getPlayerDexterity() +
-                    " INT: " + model.getPlayerIntelligence() + " END: " + model.getPlayerEndurance() +
-                    " STR: " + model.getPlayerStrength() + " FTH: " + model.getPlayerFaith() + "]");
-        runesLabel = new JLabel("RUNES: " + model.getPlayerRunes());
+        statsLabel = new JLabel("STATS [HP: " + model.getPlayerHealth() + "(" + model.getWeaponHealth() + ")" +
+                    " DEX: " + model.getPlayerDexterity() + "(" + model.getWeaponDexterity() + ")" +
+                    " INT: " + model.getPlayerIntelligence() + "(" + model.getWeaponIntelligence() + ")" +
+                    " END: " + model.getPlayerEndurance() + "(" + model.getWeaponEndurance() + ")" +
+                    " STR: " + model.getPlayerStrength() + "(" + model.getWeaponStrength() + ")" +
+                    " FTH: " + model.getPlayerFaith() + "(" + model.getWeaponFaith() + ")" + "]");
+                runesLabel = new JLabel("RUNES: " + model.getPlayerRunes());
         equippedWeaponLabel = new JLabel("EQUIPPED WEAPON: " + model.getEquippedWeaponName());
-        equippedWeaponStatsLabel = new JLabel("WEAPON STATS: " + model.getEquippedWeaponStats());
 
         Font labelFont = new Font("Times New Roman", Font.PLAIN, 14);
         nameLabel.setFont(labelFont);
@@ -54,7 +55,6 @@ public class GameLobbyView {
         statsLabel.setFont(labelFont);
         runesLabel.setFont(labelFont);
         equippedWeaponLabel.setFont(labelFont);
-        equippedWeaponStatsLabel.setFont(labelFont);
 
         nameLabel.setForeground(Color.WHITE);
         classLabel.setForeground(Color.WHITE);
@@ -62,7 +62,7 @@ public class GameLobbyView {
         statsLabel.setForeground(Color.WHITE);
         runesLabel.setForeground(Color.WHITE);
         equippedWeaponLabel.setForeground(Color.WHITE);
-        equippedWeaponStatsLabel.setForeground(Color.WHITE);
+
 
         // Add components to the details panel
         detailsPanel.add(nameLabel);
@@ -71,7 +71,6 @@ public class GameLobbyView {
         detailsPanel.add(statsLabel);
         detailsPanel.add(runesLabel);
         detailsPanel.add(equippedWeaponLabel);
-        detailsPanel.add(equippedWeaponStatsLabel);
         panel.add(detailsPanel, gbc);
 
         gbc.gridx = 1;
