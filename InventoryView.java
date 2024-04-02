@@ -5,8 +5,8 @@ import java.util.List;
 
 public class InventoryView {
     private JFrame frame;
-    private JList<String> weaponList; // JList for displaying weapons
-    private DefaultListModel<String> listModel; // Model for the JList
+    private JList<String> weaponList;
+    private DefaultListModel<String> listModel;
     private JButton selectButton;
     private JButton backButton;
     private ActionListener selectListener;
@@ -22,8 +22,8 @@ public class InventoryView {
         frame = new JFrame("Inventory");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        listModel = new DefaultListModel<>(); // Initialize the list model
-        weaponList = new JList<>(listModel); // Initialize the JList with the model
+        listModel = new DefaultListModel<>();
+        weaponList = new JList<>(listModel);
         JScrollPane scrollPane = new JScrollPane(weaponList);
         frame.add(scrollPane, BorderLayout.CENTER);
 
@@ -39,12 +39,12 @@ public class InventoryView {
     }
 
     public void setInventory(List<Weapon> inventory) {
-        listModel.clear(); // Clear the existing items in the list model
+        listModel.clear();
         for (int i = 0; i < inventory.size(); i++) {
             Weapon weapon = inventory.get(i);
-            String itemName = "[" + i + "] " + weapon.getName(); // Add the weapon name
+            String itemName = "[" + i + "] " + weapon.getName();
             if (model.getPlayer().getEquippedWeapon() != null && model.getPlayer().getEquippedWeapon().equals(weapon)) {
-                itemName += " (Equipped)"; // Add "E" if the item is equipped
+                itemName += " (Equipped)"; 
             }
             listModel.addElement(itemName);
         }
@@ -59,10 +59,6 @@ public class InventoryView {
     public void addBackListener(ActionListener listener) {
         backListener = listener;
         backButton.addActionListener(listener);
-    }
-
-    public void highlightEquippedWeapon(int index) {
-        weaponList.setSelectedIndex(index); // Select the equipped weapon in the JList
     }
 
     public JFrame getFrame() {
