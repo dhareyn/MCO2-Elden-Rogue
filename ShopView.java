@@ -1,64 +1,87 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 public class ShopView {
     private JFrame frame;
-    public JList<String> weaponList; // Change access modifier
+    private JTabbedPane tabbedPane;
+    private Map<String, JList<String>> weaponLists; // Map to store weapon lists by category
     private DefaultListModel<String> listModel;
-    private JButton purchaseButton;
+    private JLabel selectedWeaponLabel;
     private JLabel runesLabel;
-    private JButton backButton; // Add backButton
-    private Player player;
+    private ShopModel model; // Added ShopModel reference
+    private JButton backButton; // Added back button
+    private JButton selectButton;
 
-    public ShopView(Player player) {
-        this.player = player;
-        initializeUI(player);
+    public ShopView(ShopModel model) {
+        this.model = model;
+        initializeUI();
     }
 
-    private void initializeUI(Player player) {
+    private void initializeUI() {
         frame = new JFrame("Shop");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Initialize components
         listModel = new DefaultListModel<>();
-        weaponList = new JList<>(listModel);
-        JScrollPane scrollPane = new JScrollPane(weaponList);
-        purchaseButton = new JButton("Purchase");
-        runesLabel = new JLabel("Runes: " + player.getRunes());
-        backButton = new JButton("Back to Lobby"); // Create Back button
+        weaponLists = new HashMap<>();
+        runesLabel = new JLabel("Runes: " + model.getPlayer().getRunes()); // Access player through model
+
+        // Create tabbed pane
+        tabbedPane = new JTabbedPane();
 
         // Layout
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.add(scrollPane, BorderLayout.CENTER);
-        panel.add(purchaseButton, BorderLayout.SOUTH);
-        panel.add(runesLabel, BorderLayout.NORTH);
-        panel.add(backButton, BorderLayout.WEST); // Add Back button to the WEST side
+        JPanel mainPanel = new JPanel(new BorderLayout());
 
-        frame.add(panel);
-        frame.pack();
+        // Add tabbed pane to main panel
+        mainPanel.add(tabbedPane, BorderLayout.CENTER);
+        mainPanel.add(runesLabel, BorderLayout.NORTH);
+
+        // Create buttons panel
+        JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        backButton = new JButton("Back");
+        selectButton = new JButton("Select"); // Added select button
+        buttonsPanel.add(selectButton); // Added select button to the buttons panel
+        buttonsPanel.add(backButton);
+        mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
+
+        // Add main panel to frame
+        frame.add(mainPanel);
+
+        frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
     }
 
-    public void setWeapons(List<Weapon> weapons) {
-        listModel.clear();
-        for (Weapon weapon : weapons) {
-            listModel.addElement(weapon.getName() + " - Cost: " + weapon.getRuneCost());
-        }
+    public void addWeaponCategory(String category, List<String> weapons) {
+        JList<String> weaponList = new JList<>(weapons.toArray(new String[0]));
+        JScrollPane scrollPane = new JScrollPane(weaponList);
+        weaponLists.put(category, weaponList);
+        tabbedPane.addTab(category, scrollPane);
+    }
+
+    public void setSelectedWeaponDetails(String details) {
+        selectedWeaponLabel.setText(details);
     }
 
     public void setRunes(int runes) {
         runesLabel.setText("Runes: " + runes);
     }
 
-    public void addPurchaseListener(ActionListener listener) {
-        purchaseButton.addActionListener(listener);
-    }
-
-    // Method to add ActionListener for the Back button
     public void addBackButtonListener(ActionListener listener) {
         backButton.addActionListener(listener);
+    }
+
+    public void addWeaponSelectListener(ActionListener listener) {
+        selectButton.addActionListener(listener);
+    }
+
+    public String getSelectedCategory() {
+        int selectedIndex = tabbedPane.getSelectedIndex();
+        return tabbedPane.getTitleAt(selectedIndex);
     }
 
     public void display() {
@@ -73,7 +96,7 @@ public class ShopView {
         return frame;
     }
 
-    public JList<String> getWeaponList() {
-        return weaponList;
+    public JList<String> getSelectedWeaponList(String category) {
+        return weaponLists.get(category);
     }
 }
