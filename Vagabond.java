@@ -6,7 +6,7 @@ public class Vagabond extends JobClass {
      * Constructs a Vagabond object with predefined attribute values.
      */
     public Vagabond() {
-        super(9, 15, 13, 9, 11, 14, 9);
+        super(9, 15, 13, 9, 11, 14, 9, "jobpics/vagabond.png");
     }
 
     /**
