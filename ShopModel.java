@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ShopModel {
     private List<Weapon> weapons;
@@ -69,17 +71,15 @@ public class ShopModel {
             return false; // Insufficient runes
         }
     }
-    
+
     // Method to categorize weapons based on their names
     private String determineCategory(Weapon weapon) {
         String weaponName = weapon.getName().toLowerCase(); // Convert weapon name to lowercase for case-insensitive comparison
 
-        if (weaponName.contains("sword")) {
-            if (weaponName.contains("inseparable sword") || weaponName.contains("claymore") || weaponName.contains("greatsword") || weaponName.contains("blade")) {
-                return "Greatswords"; // Treat certain swords as greatswords
-            } else if (weaponName.contains("short") || weaponName.contains("rapier") || weaponName.contains("coded") || weaponName.contains("night")){
-                return "Swords"; // Other swords
-            }
+        if (weaponName.contains("inseparable sword") || weaponName.contains("claymore") || weaponName.contains("greatsword") || weaponName.contains("blade")) {
+            return "Greatswords"; // Treat certain swords as greatswords
+        } else if (weaponName.contains("short") || weaponName.contains("rapier") || weaponName.contains("coded") || weaponName.contains("night")){
+            return "Swords"; // Other swords
         } else if (weaponName.contains("uchigatana") || weaponName.contains("moonveil") || weaponName.contains("blood") || weaponName.contains("hand")) {
             return "Katanas";
         } else if (weaponName.contains("whip") || weaponName.contains("urumi")) {
@@ -91,17 +91,18 @@ public class ShopModel {
         }
 
         // If the weapon doesn't match any category, return null
-        return "Sword";
+        return "Swords";
     }
 
-
     // Method to get categorized weapons
-    public List<Weapon> getCategorizedWeapons(String category) {
-        List<Weapon> categorizedWeapons = new ArrayList<>();
+    public Map<String, List<Weapon>> getCategorizedWeapons() {
+        Map<String, List<Weapon>> categorizedWeapons = new HashMap<>();
         for (Weapon weapon : weapons) {
-            if (determineCategory(weapon).equals(category)) {
-                categorizedWeapons.add(weapon);
+            String category = determineCategory(weapon);
+            if (!categorizedWeapons.containsKey(category)) {
+                categorizedWeapons.put(category, new ArrayList<>());
             }
+            categorizedWeapons.get(category).add(weapon);
         }
         return categorizedWeapons;
     }
