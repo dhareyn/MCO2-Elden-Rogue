@@ -32,33 +32,33 @@ public class LevelUpView {
 
         // Create buttons
         healthButton = new JButton("Level Up Health");
-        enduranceButton = new JButton("Level Up Endurance");
         dexterityButton = new JButton("Level Up Dexterity");
-        strengthButton = new JButton("Level Up Strength");
         intelligenceButton = new JButton("Level Up Intelligence");
+        enduranceButton = new JButton("Level Up Endurance");
+        strengthButton = new JButton("Level Up Strength");
         faithButton = new JButton("Level Up Faith");
         backButton = new JButton("Back");
 
         // Create labels for stats
         healthLabel = new JLabel("Health: " + model.getPlayer().getJobClass().getHP());
-        enduranceLabel = new JLabel("Endurance: " + model.getPlayer().getJobClass().getEndurance());
         dexterityLabel = new JLabel("Dexterity: " + model.getPlayer().getJobClass().getDexterity());
-        strengthLabel = new JLabel("Strength: " + model.getPlayer().getJobClass().getStrength());
         intelligenceLabel = new JLabel("Intelligence: " + model.getPlayer().getJobClass().getIntelligence());
+        enduranceLabel = new JLabel("Endurance: " + model.getPlayer().getJobClass().getEndurance());
+        strengthLabel = new JLabel("Strength: " + model.getPlayer().getJobClass().getStrength());
         faithLabel = new JLabel("Faith: " + model.getPlayer().getJobClass().getFaith());
         levelLabel = new JLabel("Level: " + model.getPlayer().getLevel());
 
         // Set font and foreground color for labels
         healthLabel.setFont(timesNewRoman);
         healthLabel.setForeground(Color.WHITE);
-        enduranceLabel.setFont(timesNewRoman);
-        enduranceLabel.setForeground(Color.WHITE);
         dexterityLabel.setFont(timesNewRoman);
         dexterityLabel.setForeground(Color.WHITE);
-        strengthLabel.setFont(timesNewRoman);
-        strengthLabel.setForeground(Color.WHITE);
+        enduranceLabel.setFont(timesNewRoman);
+        enduranceLabel.setForeground(Color.WHITE);
         intelligenceLabel.setFont(timesNewRoman);
         intelligenceLabel.setForeground(Color.WHITE);
+        strengthLabel.setFont(timesNewRoman);
+        strengthLabel.setForeground(Color.WHITE);
         faithLabel.setFont(timesNewRoman);
         faithLabel.setForeground(Color.WHITE);
         levelLabel.setFont(timesNewRoman);
@@ -77,14 +77,14 @@ public class LevelUpView {
         // Add buttons and labels to the panel
         panel.add(healthButton);
         panel.add(healthLabel);
-        panel.add(enduranceButton);
-        panel.add(enduranceLabel);
         panel.add(dexterityButton);
         panel.add(dexterityLabel);
-        panel.add(strengthButton);
-        panel.add(strengthLabel);
         panel.add(intelligenceButton);
         panel.add(intelligenceLabel);
+        panel.add(enduranceButton);
+        panel.add(enduranceLabel);
+        panel.add(strengthButton);
+        panel.add(strengthLabel);
         panel.add(faithButton);
         panel.add(faithLabel);
         panel.add(levelLabel);
