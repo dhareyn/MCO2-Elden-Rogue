@@ -7,7 +7,7 @@ public class Prophet extends JobClass {
      * Constructor for creating a new Prophet object.
      */
     public Prophet() {
-        super(7, 10, 10, 7, 8, 11, 16);
+        super(7, 10, 10, 7, 8, 11, 16, "jobpics/prophet.png");
     }
 
     /**
