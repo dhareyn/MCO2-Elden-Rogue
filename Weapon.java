@@ -8,11 +8,12 @@ public class Weapon {
     private int weaponEndurance;
     private int weaponStrength;
     private int weaponFaith;
+    private String imagePath; // Path to the image file
 
     // Constructor
     public Weapon(String name, int runesCost, int requiredDexterity,
                   int weaponHealth, int weaponDexterity, int weaponIntelligence,
-                  int weaponEndurance, int weaponStrength, int weaponFaith) {
+                  int weaponEndurance, int weaponStrength, int weaponFaith, String imagePath) {
         this.name = name;
         this.runesCost = runesCost;
         this.requiredDexterity = requiredDexterity;
@@ -22,6 +23,7 @@ public class Weapon {
         this.weaponEndurance = weaponEndurance;
         this.weaponStrength = weaponStrength;
         this.weaponFaith = weaponFaith;
+        this.imagePath = imagePath;
     }
 
     // Getter for Rune Cost
@@ -67,5 +69,24 @@ public class Weapon {
     // Getter for Name
     public String getName() {
         return name;
+    }
+
+    // Getter for Image Path
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public String getDescription() {
+        StringBuilder description = new StringBuilder();
+        description.append("Name: ").append(name).append("\n");
+        description.append("Rune Cost: ").append(runesCost).append("\n");
+        description.append("Required Dexterity: ").append(requiredDexterity).append("\n");
+        description.append("Health: ").append(weaponHealth).append("\n");
+        description.append("Dexterity: ").append(weaponDexterity).append("\n");
+        description.append("Intelligence: ").append(weaponIntelligence).append("\n");
+        description.append("Endurance: ").append(weaponEndurance).append("\n");
+        description.append("Strength: ").append(weaponStrength).append("\n");
+        description.append("Faith: ").append(weaponFaith).append("\n");
+        return description.toString();
     }
 }
