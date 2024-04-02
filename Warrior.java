@@ -6,7 +6,7 @@ public class Warrior extends JobClass {
      * Constructs a Warrior object with predefined attribute values.
      */
     public Warrior() {
-        super(8, 11, 16, 10, 11, 10, 8);
+        super(8, 11, 16, 10, 11, 10, 8, "jobpics/warrior.png");
     }
 
     /**
