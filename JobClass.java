@@ -10,6 +10,7 @@ public abstract class JobClass {
     private int endurance;
     private int strength;
     private int faith;
+    private String imagePath;
 
     /**
      * Constructs a JobClass object with specified stats.
@@ -22,7 +23,7 @@ public abstract class JobClass {
      * @param strength     The strength of the character.
      * @param faith        The faith of the character.
      */
-    public JobClass(int level, int hp, int dexterity, int intelligence, int endurance, int strength, int faith) {
+    public JobClass(int level, int hp, int dexterity, int intelligence, int endurance, int strength, int faith, String imagePath) {
         this.level = level;
         this.hp = hp;
         this.dexterity = dexterity;
@@ -30,6 +31,7 @@ public abstract class JobClass {
         this.endurance = endurance;
         this.strength = strength;
         this.faith = faith;
+        this.imagePath = imagePath;
     }
 
     /**
@@ -93,6 +95,15 @@ public abstract class JobClass {
      */
     public int getFaith() {
         return faith;
+    }
+
+    /**
+     * Retrieves the path to the image representing the job class.
+     *
+     * @return The image path.
+     */
+    public String getImagePath() {
+        return imagePath;
     }
 
     /**
