@@ -43,35 +43,30 @@ public class GameLobbyController implements ActionListener {
 
     // Method to open the level-up screen
     private void openLevelUpScreen(Player player) {
-        System.out.println("CLICKED!");
         LevelUpModel levelUpModel = new LevelUpModel(player);
         LevelUpView levelUpView = new LevelUpView(levelUpModel);
-        LevelUpController levelUpController = new LevelUpController(levelUpModel, levelUpView, player);
+        LevelUpController levelUpController = new LevelUpController(levelUpModel, levelUpView);
     }
 
     private void openInventoryScreen(Player player) {
-        System.out.println("CLICKED!");
         InventoryModel inventoryModel = new InventoryModel(player);
         InventoryView inventoryView = new InventoryView(inventoryModel);
-        InventoryController inventoryController = new InventoryController(inventoryModel, inventoryView, player);
+        InventoryController inventoryController = new InventoryController(inventoryModel, inventoryView);
     }
 
     private void openShopScreen(Player player) {
-        System.out.println("CLICKED!");
         ShopModel shopModel = new ShopModel(player);
-        ShopView shopView = new ShopView(player);
-        ShopController shopController = new ShopController(shopModel, shopView, player);
+        ShopView shopView = new ShopView(shopModel);
+        ShopController shopController = new ShopController(shopModel, shopView);
     }
 
 
-
-    // Method to update player runes
+    
     public void updatePlayerRunes(int runes) {
         model.getPlayer().setRunes(runes);
-        view.updatePlayerRunes(runes); // Assuming you have a method in GameLobbyView to update the runes label
+        view.updatePlayerRunes(runes);
     }
 
-    // Method to re-register ActionListener with buttons
     public void registerActionListener() {
         for (JButton button : view.getButtons()) {
             button.addActionListener(this);
