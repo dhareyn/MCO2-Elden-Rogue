@@ -4,12 +4,10 @@ import java.awt.event.ActionListener;
 public class LevelUpController {
     private LevelUpModel model;
     private LevelUpView view;
-    private Player player;
 
-    public LevelUpController(LevelUpModel model, LevelUpView view, Player player) {
+    public LevelUpController(LevelUpModel model, LevelUpView view) {
         this.model = model;
         this.view = view;
-        this.player = player;
 
         // Add action listeners to view components
         view.addHealthButtonListener(new HealthButtonListener());
@@ -25,8 +23,8 @@ public class LevelUpController {
         @Override
         public void actionPerformed(ActionEvent e) {
             model.levelUp("health");
-            int health = player.getJobClass().getHP();
-            int level = player.getLevel();
+            int health = model.getPlayer().getJobClass().getHP();
+            int level = model.getPlayer().getLevel();
             view.updateHealthLabel(health); // Update health label
             view.updateLevelLabel(level);
         }
@@ -36,8 +34,8 @@ public class LevelUpController {
         @Override
         public void actionPerformed(ActionEvent e) {
             model.levelUp("endurance");
-            int endurance = player.getJobClass().getEndurance();
-            int level = player.getLevel();
+            int endurance = model.getPlayer().getJobClass().getEndurance();
+            int level = model.getPlayer().getLevel();
             view.updateEnduranceLabel(endurance); // Update endurance label
             view.updateLevelLabel(level);
         }
@@ -47,8 +45,8 @@ public class LevelUpController {
         @Override
         public void actionPerformed(ActionEvent e) {
             model.levelUp("dexterity");
-            int dexterity = player.getJobClass().getDexterity();
-            int level = player.getLevel();
+            int dexterity = model.getPlayer().getJobClass().getDexterity();
+            int level = model.getPlayer().getLevel();
             view.updateDexterityLabel(dexterity); // Update dexterity label
             view.updateLevelLabel(level);
         }
@@ -58,8 +56,8 @@ public class LevelUpController {
         @Override
         public void actionPerformed(ActionEvent e) {
             model.levelUp("strength");
-            int strength = player.getJobClass().getStrength();
-            int level = player.getLevel();
+            int strength = model.getPlayer().getJobClass().getStrength();
+            int level = model.getPlayer().getLevel();
             view.updateStrengthLabel(strength); // Update strength label
             view.updateLevelLabel(level);
         }
@@ -69,8 +67,8 @@ public class LevelUpController {
         @Override
         public void actionPerformed(ActionEvent e) {
             model.levelUp("intelligence");
-            int intelligence = player.getJobClass().getIntelligence();
-            int level = player.getLevel();
+            int intelligence = model.getPlayer().getJobClass().getIntelligence();
+            int level = model.getPlayer().getLevel();
             view.updateIntelligenceLabel(intelligence); // Update intelligence label
             view.updateLevelLabel(level);
         }
@@ -80,8 +78,8 @@ public class LevelUpController {
         @Override
         public void actionPerformed(ActionEvent e) {
             model.levelUp("faith");
-            int faith = player.getJobClass().getFaith();
-            int level = player.getLevel();
+            int faith = model.getPlayer().getJobClass().getFaith();
+            int level = model.getPlayer().getLevel();
             view.updateFaithLabel(faith); // Update faith label
             view.updateLevelLabel(level);
         }
@@ -94,9 +92,9 @@ public class LevelUpController {
             view.closeWindow();
 
             // Open a new game lobby view
-            GameLobbyModel gameLobbyModel = new GameLobbyModel(player);
+            GameLobbyModel gameLobbyModel = new GameLobbyModel(model.getPlayer());
             GameLobbyView gameLobbyView = new GameLobbyView(gameLobbyModel);
-            gameLobbyView.showLobby();
+            GameLobbyController gameLobbyController = new GameLobbyController(gameLobbyView, gameLobbyModel);
         }
     }
 }
