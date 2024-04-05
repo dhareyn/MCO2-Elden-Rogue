@@ -33,7 +33,9 @@ public class FastTravelView extends JFrame {
     public int getSelectedIndex() {
         return optionsComboBox.getSelectedIndex();
     }
-
+     public JComboBox<String> getOptionsComboBox() {
+        return optionsComboBox;
+    }
     public void addTravelButtonListener(ActionListener listener) {
         travelButton.addActionListener(listener);
     }
