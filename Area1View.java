@@ -29,6 +29,7 @@ public class Area1View extends JPanel {
             default:
                 break;
         }
+        drawPlayerStats(g);
     }
 
     private void drawFloor1(Graphics g) {
@@ -157,5 +158,18 @@ public class Area1View extends JPanel {
         int diameter = 50;
         g.setColor(Color.BLUE);
         g.fillOval(x, y, diameter, diameter); // Player circle
+    }
+    private void drawPlayerStats(Graphics g) {
+        Player player = model.getPlayer();
+        String name = player.getName();
+        int runes = player.getRunes();
+        int health = player.getHealth();
+        int level = player.getLevel();
+
+        g.setColor(Color.WHITE);
+        g.drawString("Name: " + name, 400, 20);
+        g.drawString("Runes " + runes, 400, 40);
+        g.drawString("Level " + level, 400, 60);
+        g.drawString("Health: " + health, 400, 80);
     }
 }
