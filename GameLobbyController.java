@@ -19,9 +19,7 @@ public class GameLobbyController implements ActionListener {
         switch (buttonText) {
             case "Fast Travel":
             view.getFrame().dispose();
-            openFastTravelScreen();
-           
-           
+            openFastTravelScreen(model.getPlayer());
                 break;
             case "Level Up":
                 view.getFrame().dispose();
@@ -43,8 +41,8 @@ public class GameLobbyController implements ActionListener {
         }
     }
 
-    private void openFastTravelScreen() {
-        FastTravelModel fastTravelModel = new FastTravelModel();
+    private void openFastTravelScreen(Player player) {
+        FastTravelModel fastTravelModel = new FastTravelModel(player);
         FastTravelView fastTravelView = new FastTravelView();
         FastTravelController fastTravelController = new FastTravelController(fastTravelModel, fastTravelView);
         fastTravelView.setVisible(true); // Show the fast travel view
