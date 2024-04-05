@@ -3,8 +3,10 @@ import java.util.List;
 
 public class FastTravelModel {
     private List<String> destinations;
+    private Player player;
 
-    public FastTravelModel() {
+    public FastTravelModel(Player player) {
+        this.player = player;
         // Initialize the list of destinations with only Stormveil Castle
         destinations = new ArrayList<>();
         destinations.add("Stormveil Castle (Floor 1)");
@@ -12,6 +14,10 @@ public class FastTravelModel {
 
     public List<String> getDestinations() {
         return destinations;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     // Implement updateLocation method to update the model based on the selected destination
@@ -27,4 +33,3 @@ public class FastTravelModel {
         }
     }
 }
-
