@@ -1,0 +1,124 @@
+import java.util.Random;
+
+/**
+ * The Job class represents the Jobs in the game.
+ */
+
+public class Enemy {
+    private String name;
+    private int type;
+    private int area;
+    private String areaname;
+    private int lowhealth;
+    private int highhealth;
+    private int lowattack;
+    private int highattack;
+    private double PhysicalDefense;
+    private double SorceryDefense;
+    private double IncantationDefense;
+    private boolean isBoss;
+
+    /**
+     * Constructs an Enemy object with specified attributes.
+     *
+     * @param name              The name of the adversary.
+     * @param type              The type of the adversary.
+     * @param area              The area where the adversary is encountered.
+     * @param areaname          The name of the area where the adversary is encountered.
+     * @param lowhealth         The adversary's minimum health.
+     * @param highhealth        The adversary's maximum health.
+     * @param lowattack         The adversary's minimum attack power.
+     * @param highattack        The adversary's maximum attack power.
+     * @param PhysicalDefense            The adversary's physical defense.
+     * @param SorceryDefense            The adversary's sorcery defense.
+     * @param IncantationDefense            The adversary's incantation defense.
+     * @param isBoss            Indicates whether the adversary is a boss.
+     */
+    public Enemy(String name, int type, int area, String areaname, int lowhealth, int highhealth, 
+                 int lowattack, int highattack, double PhysicalDefense, double SorceryDefense, double IncantationDefense, boolean isBoss) {
+        this.name = name;
+        this.type = type;
+        this.area = area;
+        this.areaname = areaname;
+        this.lowhealth = lowhealth;
+        this.highhealth = highhealth;
+        this.lowattack = lowattack;
+        this.highattack = highattack;
+        this.PhysicalDefense = PhysicalDefense;
+        this.SorceryDefense = SorceryDefense;
+        this.IncantationDefense = IncantationDefense;
+        this.isBoss = isBoss;
+    }
+
+    
+    public String getName()
+    {
+        return name;
+    }
+
+   
+    public int getType()
+    {
+        return type;
+    }
+
+    
+    public int getArea()
+    {
+        return area;
+    }
+
+    
+    public String getAreaname()
+    {
+        return areaname;
+    }
+
+    
+    public int getLowHealth()
+    {
+        return lowhealth;
+    }
+
+   
+    public int getHighHealth()
+    {
+        return highhealth;
+    }
+
+    
+    public int getLowAttack()
+    {
+        return lowattack;
+    }
+
+   
+    public int getHighAttack()
+    {
+        return highattack;
+    }
+
+    public double getPhysicalDefense()
+    {
+        return PhysicalDefense;
+    }
+
+   
+    public double getSorceryDefense()
+    {
+        return SorceryDefense;
+    }
+
+   
+    public double getIncantationDefense()
+    {
+        return IncantationDefense;
+    }
+
+   
+    public boolean getisBoss()
+    {
+        return isBoss;
+    }
+
+}
