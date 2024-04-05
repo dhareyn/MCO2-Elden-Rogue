@@ -4,9 +4,9 @@ import java.util.List;
 public class Player {
     private String name;
     private JobClass jobClass;
-    private int runes; // Adding runes field
+    private int runes; 
     private List<Weapon> inventory;
-    private Weapon equippedWeapon; // Change 'weapon' to 'Weapon'
+    private Weapon equippedWeapon; 
     private int equippedWeaponIndex = -1;
 
     /**
@@ -17,10 +17,9 @@ public class Player {
     public Player(String name, JobClass jobClass) {
         this.name = name;
         this.jobClass = jobClass;
-        // Initialize runes to 0
-        this.runes = 100000;
+        this.runes = 0;
         this.inventory = new ArrayList<>();
-        this.equippedWeapon = null; // Initialize equipped weapon as null initially
+        this.equippedWeapon = null;
     }
 
     // Methods for managing inventory
