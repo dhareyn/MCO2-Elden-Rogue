@@ -1,3 +1,8 @@
+import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.*;
+import javax.swing.border.*;
 /**
  * Controls the character creation process by interacting with the model and view.
  */
