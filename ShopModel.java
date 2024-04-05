@@ -3,18 +3,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The ShopModel class represents the model of the shop.
+ * It manages the available weapons and handles purchasing actions.
+ */
 public class ShopModel {
     private List<Weapon> weapons;
     private Player player;
 
+    /**
+     * Constructs a ShopModel object with the specified player.
+     * @param player The player associated with this shop model.
+     */
     public ShopModel(Player player) {
         this.player = player;
         weapons = new ArrayList<>();
         initializeWeapons();
     }
 
+    // Initializes the list of available weapons
     private void initializeWeapons() {
-        // Add instances of each weapon directly using their constructors
+        // Adding instances of each weapon directly using their constructors
         // Swords
         weapons.add(new ShortSword());
         weapons.add(new RogiersRapier());
@@ -52,34 +61,39 @@ public class ShopModel {
         weapons.add(new DragonCommunionSeal());
     }
 
+    /**
+     * Retrieves the list of available weapons.
+     * @return The list of available weapons.
+     */
     public List<Weapon> getWeapons() {
         return weapons;
     }
 
+    /**
+     * Handles the purchase of a weapon by deducting the required runes from the player's total.
+     * @param weapon The weapon to be purchased.
+     * @return True if the purchase is successful, false otherwise.
+     */
     public boolean purchaseWeapon(Weapon weapon) {
-        // Check if the player has enough runes to buy the weapon
         int playerRunes = player.getRunes();
-        System.out.println("Player runes before purchase: " + playerRunes); // Debug output
         int weaponCost = weapon.getRuneCost();
 
         if (playerRunes >= weaponCost) {
-            // Deduct the cost from the player's total runes
             player.setRunes(playerRunes - weaponCost);
-            System.out.println("Weapon purchased. Player runes after purchase: " + player.getRunes()); // Debug output
             return true; // Purchase successful
         } else {
             return false; // Insufficient runes
         }
     }
 
-    // Method to categorize weapons based on their names
+    // Determines the category of a weapon based on its name
     private String determineCategory(Weapon weapon) {
-        String weaponName = weapon.getName().toLowerCase(); // Convert weapon name to lowercase for case-insensitive comparison
+        String weaponName = weapon.getName().toLowerCase();
 
         if (weaponName.contains("inseparable sword") || weaponName.contains("claymore") || weaponName.contains("greatsword") || weaponName.contains("blade")) {
-            return "Greatswords"; // Treat certain swords as greatswords
-        } else if (weaponName.contains("short") || weaponName.contains("rapier") || weaponName.contains("coded") || weaponName.contains("night")){
-            return "Swords"; // Other swords
+            return "Greatswords";
+        } else if (weaponName.contains("short") || weaponName.contains("rapier") || weaponName.contains("coded") || weaponName.contains("night")) {
+            return "Swords";
         } else if (weaponName.contains("uchigatana") || weaponName.contains("moonveil") || weaponName.contains("blood") || weaponName.contains("hand")) {
             return "Katanas";
         } else if (weaponName.contains("whip") || weaponName.contains("urumi")) {
@@ -90,32 +104,38 @@ public class ShopModel {
             return "Seals";
         }
 
-        // If the weapon doesn't match any category, return null
-        return "Swords";
+        return "Swords"; // Default category
     }
 
-    // Method to get categorized weapons
+    // Retrieves categorized weapons
     public Map<String, List<Weapon>> getCategorizedWeapons() {
         Map<String, List<Weapon>> categorizedWeapons = new HashMap<>();
         for (Weapon weapon : weapons) {
             String category = determineCategory(weapon);
-            if (!categorizedWeapons.containsKey(category)) {
-                categorizedWeapons.put(category, new ArrayList<>());
-            }
-            categorizedWeapons.get(category).add(weapon);
+            categorizedWeapons.computeIfAbsent(category, k -> new ArrayList<>()).add(weapon);
         }
         return categorizedWeapons;
     }
 
+    /**
+     * Retrieves the associated player of the shop model.
+     * @return The associated player.
+     */
     public Player getPlayer() {
         return player;
     }
+
+    /**
+     * Retrieves a weapon by its name.
+     * @param name The name of the weapon to retrieve.
+     * @return The weapon with the specified name, or null if not found.
+     */
     public Weapon getWeaponByName(String name) {
         for (Weapon weapon : weapons) {
             if (weapon.getName().equals(name)) {
-                return weapon; // Return the weapon if its name matches
+                return weapon;
             }
         }
-        return null; // Return null if no weapon with the given name is found
+        return null;
     }
 }
