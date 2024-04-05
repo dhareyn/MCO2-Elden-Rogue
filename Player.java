@@ -52,6 +52,10 @@ public class Player {
         runes -= amount;
     }
 
+        public void addRunes(int amount) {
+        runes += amount;
+    }
+
 
     /**
      * Gets the number of runes the player has.
