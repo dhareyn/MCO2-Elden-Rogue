@@ -1,7 +1,7 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
-
+/**
+ * Represents the view for character creation, providing user interface components
+ * for entering player name and selecting a character class.
+ */
 public class CharacterCreationView {
     private JFrame frame;
     private JPanel panel;
@@ -12,6 +12,9 @@ public class CharacterCreationView {
     private JComboBox<String> classComboBox;
     private JButton createButton;
 
+    /**
+     * Constructs a new CharacterCreationView with default settings.
+     */
     public CharacterCreationView() {
         frame = new JFrame("Character Creation");
         panel = new JPanel();
@@ -66,26 +69,52 @@ public class CharacterCreationView {
         frame.setLocationRelativeTo(null);
     }
 
+    /**
+     * Displays the character creation view.
+     */
     public void display() {
         frame.setVisible(true);
     }
 
+    /**
+     * Retrieves the player's name entered in the name field.
+     *
+     * @return the player's name
+     */
     public String getPlayerName() {
         return nameField.getText();
     }
 
+    /**
+     * Retrieves the selected character class from the combo box.
+     *
+     * @return the selected character class
+     */
     public String getSelectedClass() {
         return (String) classComboBox.getSelectedItem();
     }
 
+    /**
+     * Adds an ActionListener to the create button.
+     *
+     * @param listener the ActionListener to add
+     */
     public void addCreateButtonListener(ActionListener listener) {
         createButton.addActionListener(listener);
     }
 
+    /**
+     * Closes the character creation view.
+     */
     public void close() {
         frame.dispose();
     }
 
+    /**
+     * Retrieves the main frame of the character creation view.
+     *
+     * @return the main frame
+     */
     public JFrame getMainFrame() {
         return frame;
     }
