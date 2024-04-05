@@ -33,5 +33,11 @@ public class FastTravelController {
         Area1View area1View = new Area1View(area1Model);
         Area1Controller area1Controller = new Area1Controller(area1Model, area1View);
         area1View.setVisible(true);
+
+        JFrame frame = new JFrame("Area 1");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(area1View); // Add the Area1View panel to the JFrame
+        frame.pack(); // Adjust the frame size to fit the panel
+        frame.setVisible(true);
     }
 }
