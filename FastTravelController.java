@@ -33,13 +33,13 @@ public class FastTravelController {
                         openArea2Screen();
                         break;
                     }
-                    case "The Elden Throne": {
-                        if( /* insert logic here */)
+                /*    case "The Elden Throne": {
+                        if(  insert logic here )
                         {
                             openArea3Screen();
                         } else {
                              JOptionPane.showMessageDialog(null, "Area locked, clear Area 1 and 2 first", "Area Locked", JOptionPane.INFORMATION_MESSAGE);
-                        }
+                        } */
                 }
             } else {
                 System.out.println("No option selected.");
