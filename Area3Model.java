@@ -152,6 +152,43 @@ public class Area3Model {
         }
     }
 
+    private void initiateBattle() {
+        // Simulate a battle (similar to previous implementations)
+        JOptionPane.showMessageDialog(null, "Enemy encountered! Prepare for battle!", "Battle", JOptionPane.INFORMATION_MESSAGE);
+        int playerHP = 100; // Player's initial HP
+        int enemyHP = 50; // Enemy's initial HP
+        boolean playerTurn = true; // Player starts first
+        while (playerHP > 0 && enemyHP > 0) {
+            if (playerTurn) {
+                // Player's turn
+                String action = JOptionPane.showInputDialog(null, "Your turn! Choose action (attack, defend):", "Action", JOptionPane.QUESTION_MESSAGE);
+                if (action != null && action.equalsIgnoreCase("attack")) {
+                    int damage = new Random().nextInt(10) + 1; // Random damage between 1 and 10
+                    enemyHP -= damage;
+                    JOptionPane.showMessageDialog(null, "You attacked the enemy for " + damage + " damage!", "Battle", JOptionPane.INFORMATION_MESSAGE);
+                } else if (action != null && action.equalsIgnoreCase("defend")) {
+                    // Player defends, reducing enemy's next attack damage
+                    JOptionPane.showMessageDialog(null, "You defended!", "Battle", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid action!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                // Enemy's turn
+                int damage = new Random().nextInt(10) + 1; // Random damage between 1 and 10
+                playerHP -= damage;
+                JOptionPane.showMessageDialog(null, "Enemy attacked you for " + damage + " damage!", "Battle", JOptionPane.INFORMATION_MESSAGE);
+            }
+            playerTurn = !playerTurn; // Switch turn
+        }
+        // Battle outcome
+        if (playerHP <= 0) {
+            JOptionPane.showMessageDialog(null, "Defeated! Game Over!", "Battle Result", JOptionPane.ERROR_MESSAGE);
+            // Implement game over logic or return to main menu
+        } else {
+            JOptionPane.showMessageDialog(null, "Victory! You defeated the enemy!", "Battle Result", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
     
 }
 
