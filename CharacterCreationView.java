@@ -1,3 +1,6 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
 /**
  * Represents the view for character creation, providing user interface components
  * for entering player name and selecting a character class.
