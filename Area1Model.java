@@ -13,13 +13,30 @@ public class Area1Model {
     private int[] floorGridCols = {3, 7, 5}; // Number of columns for each floor
     private int cellSize = 50; // Size of each grid cell
     private Set<Point> disabledTiles = new HashSet<>(); // Track disabled tiles
+    private Player player;
 
     public Area1Model() {
+        this.player = player;
         // Set the initial position for floor 1
         x = 50; // Starting position for floor 1, column 2 (index 1) * cellSize
         y = 300; // Starting position for floor 1, row 7 (index 6) * cellSize
     }
+    public Player getPlayer() {
+        return player;
+    }
+    public String getPlayerName() {
+        return player.getName();
+    }
+    public int getPlayerRunes() {
+        return player.getRunes();
+    }
+    public int getPlayerHealth() {
+        return player.getHealth();
+    }
 
+    public int getPlayerLevel() {
+        return player.getLevel();
+    }
     public int getX() {
         return x;
     }
@@ -133,6 +150,7 @@ public class Area1Model {
             } else {
                 int treasureValue = rand.nextInt(101) + 50;
                 JOptionPane.showMessageDialog(null, "Treasure spawned: " + treasureValue, "Treasure", JOptionPane.INFORMATION_MESSAGE);
+                player.addRunes(treasureValue);
             }
             disableTile(new Point(x, y)); // Disable the tile after triggering
         }
