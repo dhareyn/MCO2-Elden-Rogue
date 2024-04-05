@@ -1,3 +1,6 @@
+/**
+ * Represents a weapon in the game.
+ */
 public class Weapon {
     private String name;
     private int runesCost;
@@ -10,7 +13,20 @@ public class Weapon {
     private int weaponFaith;
     private String imagePath; // Path to the image file
 
-    // Constructor
+    /**
+     * Constructs a new Weapon object.
+     *
+     * @param name              the name of the weapon
+     * @param runesCost         the cost of the weapon in runes
+     * @param requiredDexterity the required dexterity to use the weapon
+     * @param weaponHealth      the health points provided by the weapon
+     * @param weaponDexterity   the dexterity points provided by the weapon
+     * @param weaponIntelligence the intelligence points provided by the weapon
+     * @param weaponEndurance   the endurance points provided by the weapon
+     * @param weaponStrength    the strength points provided by the weapon
+     * @param weaponFaith       the faith points provided by the weapon
+     * @param imagePath         the path to the image file of the weapon
+     */
     public Weapon(String name, int runesCost, int requiredDexterity,
                   int weaponHealth, int weaponDexterity, int weaponIntelligence,
                   int weaponEndurance, int weaponStrength, int weaponFaith, String imagePath) {
@@ -26,56 +42,101 @@ public class Weapon {
         this.imagePath = imagePath;
     }
 
-    // Getter for Rune Cost
+    /**
+     * Retrieves the cost of the weapon in runes.
+     *
+     * @return the cost of the weapon
+     */
     public int getRuneCost() {
         return runesCost;
     }
 
-    // Getter for Required Dexterity
+    /**
+     * Retrieves the required dexterity to use the weapon.
+     *
+     * @return the required dexterity
+     */
     public int getDexterityRequirement() {
         return requiredDexterity;
     }
 
-    // Getter for Weapon Health
+    /**
+     * Retrieves the health points provided by the weapon.
+     *
+     * @return the health points
+     */
     public int getHealth() {
         return weaponHealth;
     }
 
-    // Getter for Weapon Dexterity
+    /**
+     * Retrieves the dexterity points provided by the weapon.
+     *
+     * @return the dexterity points
+     */
     public int getDexterity() {
         return weaponDexterity;
     }
 
-    // Getter for Weapon Intelligence
+    /**
+     * Retrieves the intelligence points provided by the weapon.
+     *
+     * @return the intelligence points
+     */
     public int getIntelligence() {
         return weaponIntelligence;
     }
 
-    // Getter for Weapon Endurance
+    /**
+     * Retrieves the endurance points provided by the weapon.
+     *
+     * @return the endurance points
+     */
     public int getEndurance() {
         return weaponEndurance;
     }
 
-    // Getter for Weapon Strength
+    /**
+     * Retrieves the strength points provided by the weapon.
+     *
+     * @return the strength points
+     */
     public int getStrength() {
         return weaponStrength;
     }
 
-    // Getter for Weapon Faith
+    /**
+     * Retrieves the faith points provided by the weapon.
+     *
+     * @return the faith points
+     */
     public int getFaith() {
         return weaponFaith;
     }
 
-    // Getter for Name
+    /**
+     * Retrieves the name of the weapon.
+     *
+     * @return the name of the weapon
+     */
     public String getName() {
         return name;
     }
 
-    // Getter for Image Path
+    /**
+     * Retrieves the path to the image file of the weapon.
+     *
+     * @return the path to the image file
+     */
     public String getImagePath() {
         return imagePath;
     }
 
+    /**
+     * Generates a description of the weapon including its attributes.
+     *
+     * @return a string description of the weapon
+     */
     public String getDescription() {
         StringBuilder description = new StringBuilder();
         description.append("Name: ").append(name).append("\n");
