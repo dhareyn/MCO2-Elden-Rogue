@@ -2,6 +2,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
+
 public class FastTravelController {
     private FastTravelModel model;
     private FastTravelView view;
@@ -11,6 +12,7 @@ public class FastTravelController {
         this.view = view;
 
         view.addTravelButtonListener(new TravelButtonListener());
+        view.addBackButtonListener(new BackButtonListener()); // Add ActionListener for the back button
     }
 
     class TravelButtonListener implements ActionListener {
@@ -33,6 +35,19 @@ public class FastTravelController {
             }
         }
     }
+
+    class BackButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            view.closeWindow(); // Close the current window
+
+            // Open a new game lobby view
+            GameLobbyModel gameLobbyModel = new GameLobbyModel(model.getPlayer());
+            GameLobbyView gameLobbyView = new GameLobbyView(gameLobbyModel);
+            GameLobbyController gameLobbyController = new GameLobbyController(gameLobbyView, gameLobbyModel);
+        }
+    }
+
     private void openArea1Screen() {
         System.out.println("CLICKED");
         Area1Model area1Model = new Area1Model();
@@ -43,7 +58,6 @@ public class FastTravelController {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(area1View); // Add the Area1View panel to the JFrame
         frame.pack(); // Adjust the frame size to fit the panel
-        frame.setVisible(true); // Make the frame visible
-        
+        frame.setVisible(true); // Make the frame visible    }
     }
 }
