@@ -1,22 +1,29 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
+/**
+ * The ShopView class represents the view of the shop interface.
+ * It provides methods to interact with the shop UI components.
+ */
 public class ShopView {
     private JFrame frame;
     private JTabbedPane tabbedPane;
-    private Map<String, JList<String>> weaponLists; // Map to store weapon lists by category
+    private Map<String, JList<String>> weaponLists;
     private DefaultListModel<String> listModel;
     private JLabel selectedWeaponLabel;
     private JLabel runesLabel;
-    private ShopModel model; // Added ShopModel reference
-    private JButton backButton; // Added back button
+    private ShopModel model;
+    private JButton backButton;
     private JButton selectButton;
 
+    /**
+     * Constructs a ShopView object with the specified ShopModel.
+     * @param model The ShopModel associated with this view.
+     */
     public ShopView(ShopModel model) {
         this.model = model;
         initializeUI();
@@ -26,36 +33,34 @@ public class ShopView {
         frame = new JFrame("Shop");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // Initialize components
         listModel = new DefaultListModel<>();
         weaponLists = new HashMap<>();
-        runesLabel = new JLabel("Runes: " + model.getPlayer().getRunes()); // Access player through model
+        runesLabel = new JLabel("Runes: " + model.getPlayer().getRunes());
 
-        // Create tabbed pane
         tabbedPane = new JTabbedPane();
 
-        // Layout
         JPanel mainPanel = new JPanel(new BorderLayout());
-
-        // Add tabbed pane to main panel
         mainPanel.add(tabbedPane, BorderLayout.CENTER);
         mainPanel.add(runesLabel, BorderLayout.NORTH);
 
-        // Create buttons panel
         JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         backButton = new JButton("Back");
-        selectButton = new JButton("Select"); // Added select button
-        buttonsPanel.add(selectButton); // Added select button to the buttons panel
+        selectButton = new JButton("Select");
+        buttonsPanel.add(selectButton);
         buttonsPanel.add(backButton);
         mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
-        // Add main panel to frame
         frame.add(mainPanel);
 
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
     }
 
+    /**
+     * Adds a new weapon category to the shop view.
+     * @param category The name of the weapon category.
+     * @param weapons The list of weapons in the category.
+     */
     public void addWeaponCategory(String category, List<String> weapons) {
         JList<String> weaponList = new JList<>(weapons.toArray(new String[0]));
         JScrollPane scrollPane = new JScrollPane(weaponList);
@@ -63,39 +68,74 @@ public class ShopView {
         tabbedPane.addTab(category, scrollPane);
     }
 
+    /**
+     * Sets the details of the selected weapon.
+     * @param details The details of the selected weapon.
+     */
     public void setSelectedWeaponDetails(String details) {
         selectedWeaponLabel.setText(details);
     }
 
+    /**
+     * Sets the number of runes available.
+     * @param runes The number of runes available.
+     */
     public void setRunes(int runes) {
         runesLabel.setText("Runes: " + runes);
     }
 
+    /**
+     * Adds a listener to the back button.
+     * @param listener The ActionListener for the back button.
+     */
     public void addBackButtonListener(ActionListener listener) {
         backButton.addActionListener(listener);
     }
 
+    /**
+     * Adds a listener to the select button.
+     * @param listener The ActionListener for the select button.
+     */
     public void addWeaponSelectListener(ActionListener listener) {
         selectButton.addActionListener(listener);
     }
 
+    /**
+     * Retrieves the selected weapon category.
+     * @return The selected weapon category.
+     */
     public String getSelectedCategory() {
         int selectedIndex = tabbedPane.getSelectedIndex();
         return tabbedPane.getTitleAt(selectedIndex);
     }
 
+    /**
+     * Displays the shop view.
+     */
     public void display() {
         frame.setVisible(true);
     }
 
+    /**
+     * Closes the shop view.
+     */
     public void close() {
         frame.dispose();
     }
 
+    /**
+     * Retrieves the JFrame of the shop view.
+     * @return The JFrame of the shop view.
+     */
     public JFrame getFrame() {
         return frame;
     }
 
+    /**
+     * Retrieves the list of weapons in the selected category.
+     * @param category The selected weapon category.
+     * @return The list of weapons in the selected category.
+     */
     public JList<String> getSelectedWeaponList(String category) {
         return weaponLists.get(category);
     }
