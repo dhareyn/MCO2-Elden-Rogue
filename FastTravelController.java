@@ -25,10 +25,21 @@ public class FastTravelController {
 
                 // Check the selected option and perform the appropriate action
                 switch (selectedOption) {
-                    case "Stormveil Castle (Floor 1)":
+                    case "Stormveil Castle (Floor 1)": {
                         openArea1Screen();
                         break;
-                    // Add cases for other options if needed
+                    }
+                    case "Raya Lucaria Academy (Floor 1)": {
+                        openArea2Screen();
+                        break;
+                    }
+                    case "The Elden Throne": {
+                        if( /* insert logic here */)
+                        {
+                            openArea3Screen();
+                        } else {
+                             JOptionPane.showMessageDialog(null, "Area locked, clear Area 1 and 2 first", "Area Locked", JOptionPane.INFORMATION_MESSAGE);
+                        }
                 }
             } else {
                 System.out.println("No option selected.");
@@ -48,7 +59,7 @@ public class FastTravelController {
         }
     }
 
-    private void openArea1Screen() {
+    private void openArea1Screen(Player player) {
         System.out.println("CLICKED");
         Area1Model area1Model = new Area1Model();
         Area1View area1View = new Area1View(area1Model);
@@ -57,6 +68,28 @@ public class FastTravelController {
         JFrame frame = new JFrame("Area 1");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(area1View); // Add the Area1View panel to the JFrame
+        frame.pack(); // Adjust the frame size to fit the panel
+        frame.setVisible(true); // Make the frame visible    }
+    }
+     private void openArea2Screen(Player player) {
+        Area2Model area1Model = new Area2Model();
+        Area2View area1View = new Area2View(area1Model);
+        Area2Controller area1Controller = new Area2Controller(area2Model, area2View);
+
+        JFrame frame = new JFrame("Area 2");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(area2View); // Add the Area1View panel to the JFrame
+        frame.pack(); // Adjust the frame size to fit the panel
+        frame.setVisible(true); // Make the frame visible    }
+    }
+     private void openArea3Screen(Player player) {
+        Area3Model area3Model = new Area3Model();
+        Area3View area3View = new Area3View(area3Model);
+        Area3Controller area3Controller = new Area3Controller(area3Model, area3View);
+
+        JFrame frame = new JFrame("Area 3");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(area3View); // Add the Area1View panel to the JFrame
         frame.pack(); // Adjust the frame size to fit the panel
         frame.setVisible(true); // Make the frame visible    }
     }
