@@ -155,4 +155,61 @@ public class Area1Model {
             disableTile(new Point(x, y)); // Disable the tile after triggering
         }
     }
+
+     private void checkForBattle() {
+        int playerX = getX();
+        int playerY = getY();
+
+        if (currentFloor == 1) {
+            // Check if player is near enemies on floor 1
+            if ((playerX == 25 && playerY == 50) || (playerX == 100 && playerY == 50) || (playerX == 150 && playerY == 50) ||
+                    (playerX == 0 && playerY == 150) || (playerX == 150 && playerY == 150)) {
+                initiateBattle();
+            }
+        } else if (currentFloor == 2) {
+            // Check if player is near enemies on floor 2
+            if ((playerX == 100 && playerY == 150) || (playerX == 200 && playerY == 150) || (playerX == 300 && playerY == 150) ||
+                    (playerX == 100 && playerY == 250) || (playerX == 200 && playerY == 250) || (playerX == 150 && playerY == 50)) {
+                initiateBattle();
+            }
+        }
+        // Add more conditions for other floors if needed
+    }
+
+    private void initiateBattle() {
+        // Simulating a simple turn-based battle
+        JOptionPane.showMessageDialog(null, "Enemy encountered! Prepare for battle!", "Battle", JOptionPane.INFORMATION_MESSAGE);
+        int playerHP = 100; // Player's initial HP
+        int enemyHP = 50; // Enemy's initial HP
+        boolean playerTurn = true; // Player starts first
+        while (playerHP > 0 && enemyHP > 0) {
+            if (playerTurn) {
+                // Player's turn
+                String action = JOptionPane.showInputDialog(null, "Your turn! Choose action (attack, defend):", "Action", JOptionPane.QUESTION_MESSAGE);
+                if (action != null && action.equalsIgnoreCase("attack")) {
+                    int damage = new Random().nextInt(10) + 1; // Random damage between 1 and 10
+                    enemyHP -= damage;
+                    JOptionPane.showMessageDialog(null, "You attacked the enemy for " + damage + " damage!", "Battle", JOptionPane.INFORMATION_MESSAGE);
+                } else if (action != null && action.equalsIgnoreCase("defend")) {
+                    // Player defends, reducing enemy's next attack damage
+                    JOptionPane.showMessageDialog(null, "You defended!", "Battle", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid action!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                // Enemy's turn
+                int damage = new Random().nextInt(10) + 1; // Random damage between 1 and 10
+                playerHP -= damage;
+                JOptionPane.showMessageDialog(null, "Enemy attacked you for " + damage + " damage!", "Battle", JOptionPane.INFORMATION_MESSAGE);
+            }
+            playerTurn = !playerTurn; // Switch turn
+        }
+        // Battle outcome
+        if (playerHP <= 0) {
+            JOptionPane.showMessageDialog(null, "Defeated! Game Over!", "Battle Result", JOptionPane.ERROR_MESSAGE);
+            // Implement game over logic or return to main menu
+        } else {
+            JOptionPane.showMessageDialog(null, "Victory! You defeated the enemy!", "Battle Result", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 }
