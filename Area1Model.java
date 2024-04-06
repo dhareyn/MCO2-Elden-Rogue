@@ -107,7 +107,16 @@ public class Area1Model {
                 checkTile(playerX, playerY);
             }
             // Check if player reaches the door tile position to transition to floor 2
-            if (playerX == 50 && playerY == 0) {
+            if (playerX == 50 && playerY == 0) 
+            {
+                Random rand = new Random();
+                int randomNumber = rand.nextInt(100);
+                if (randomNumber < 20){
+                    System.out.println("Goodbye.");
+                    System. exit(0);
+
+                }
+                else 
                 setCurrentFloor(2); // Change to floor 2
                 // Set the starting position for floor 2
                 x = 150; // Starting position for floor 2, column 1 * cellSize
