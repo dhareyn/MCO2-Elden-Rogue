@@ -14,12 +14,31 @@ public class Area2Model {
     private int[] floorGridCols = {5, 3, 5, 6, 7}; // Number of columns for each floor
     private int cellSize = 50; // Size of each grid cell
     private Set<Point> disabledTiles = new HashSet<>(); // Track disabled tiles
+    private Player player;
   
 
-    public Area2Model() {
+    public Area2Model(Player player) {
+        this.player = player;
         // Set the initial position for floor 1
         x = 100; // Starting position for floor 1, column 2 (index 1) * cellSize
         y = 0; // Starting position for floor 1, row 7 (index 6) * cellSize
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+    public String getPlayerName() {
+        return player.getName();
+    }
+    public int getPlayerRunes() {
+        return player.getRunes();
+    }
+    public int getPlayerHealth() {
+        return player.getHealth();
+    }
+
+    public int getPlayerLevel() {
+        return player.getLevel();
     }
 
     public int getX() {
@@ -189,11 +208,12 @@ public class Area2Model {
             } else {
                 int treasureValue = rand.nextInt(101) + 50;
                 JOptionPane.showMessageDialog(null, "Treasure spawned: " + treasureValue, "Treasure", JOptionPane.INFORMATION_MESSAGE);
+                player.addRunes(treasureValue);
             }
             disableTile(new Point(x, y)); // Disable the tile after triggering
         }
     }
- private void initiateBattle() {
+ /* private void initiateBattle() {
         // Simulate a battle (similar to Area1Model's initiateBattle method)
         JOptionPane.showMessageDialog(null, "Enemy encountered! Prepare for battle!", "Battle", JOptionPane.INFORMATION_MESSAGE);
         int playerHP = getplayerHealth; // Player's initial HP
@@ -229,7 +249,7 @@ public class Area2Model {
             JOptionPane.showMessageDialog(null, "Victory! You defeated the enemy!", "Battle Result", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    
+ */
 }
 
 
