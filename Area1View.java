@@ -159,6 +159,7 @@ public class Area1View extends JPanel {
         g.setColor(Color.BLUE);
         g.fillOval(x, y, diameter, diameter); // Player circle
     }
+
     private void drawPlayerStats(Graphics g) {
         Player player = model.getPlayer();
         String name = player.getName();
