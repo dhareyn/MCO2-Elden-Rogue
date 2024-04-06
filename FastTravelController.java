@@ -73,7 +73,7 @@ public class FastTravelController {
     }
      private void openArea2Screen(Player player) {
         Area2Model area2Model = new Area2Model();
-        Area2View area2View = new Area2View(area1Model);
+        Area2View area2View = new Area2View(area2Model);
         Area2Controller area2Controller = new Area2Controller(area2Model, area2View);
 
         JFrame frame = new JFrame("Area 2");
