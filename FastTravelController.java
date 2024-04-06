@@ -72,9 +72,9 @@ public class FastTravelController {
         frame.setVisible(true); // Make the frame visible    }
     }
      private void openArea2Screen(Player player) {
-        Area2Model area1Model = new Area2Model();
-        Area2View area1View = new Area2View(area1Model);
-        Area2Controller area1Controller = new Area2Controller(area2Model, area2View);
+        Area2Model area2Model = new Area2Model();
+        Area2View area2View = new Area2View(area1Model);
+        Area2Controller area2Controller = new Area2Controller(area2Model, area2View);
 
         JFrame frame = new JFrame("Area 2");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
