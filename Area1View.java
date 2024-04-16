@@ -4,10 +4,12 @@ import java.awt.*;
 // View class
 public class Area1View extends JPanel {
     private Area1Model model;
+    private JFrame frame;
     
 
     public Area1View(Area1Model model) {
         this.model = model;
+        this.frame = frame;
         setPreferredSize(new Dimension(700, 400)); // Adjusted size to accommodate the largest floor
         setBackground(Color.BLACK); // Set background color to black
     }

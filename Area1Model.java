@@ -137,6 +137,27 @@ public class Area1Model {
                 y = 300; // Starting position for floor 3, row 7 * cellSize
             }
         }
+        else if(currentFloor == 3) {
+            if(playerX == 100 && playerY == 0) {
+                System.out.println("FAST TRAVEL TILE!");
+            }else if(playerX == 100 && playerY == 150 && !isDisabledTile(new Point(x, y))) {
+                System.out.println("BOSS TILE!");
+                BossTile(playerX, playerY);
+            }
+        }
+    }
+    private void BossTile(int x, int y) {
+        EnemyList enemyList = new EnemyList();
+        int enemyIndex = enemyList.enemyNumber(1, true); // Pass area 1 and a boss
+        Enemy enemy = enemyList.getEnemy(enemyIndex);
+
+        JOptionPane.showMessageDialog(null, "Boss Found: " + enemy.getName(), "Enemy", JOptionPane.INFORMATION_MESSAGE);
+
+        BattleModel battleModel = new BattleModel();
+        BattleView battleView = new BattleView();
+        BattleController battleController = new BattleController(battleModel, battleView);
+        battleController.initiateBattle(player, 1, true);
+        disableTile(new Point(x, y));
     }
 
     private boolean isSpawnTile(int x, int y) {
@@ -144,7 +165,7 @@ public class Area1Model {
     }
 
     private boolean isDisabledTile(Point point) {
-        return disabledTiles.contains(point);
+        return disabledTiles.contains(new Point(x, y));
     }
 
     private void disableTile(Point point) {
